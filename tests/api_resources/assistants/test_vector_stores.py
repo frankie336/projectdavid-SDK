@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestVectorStores:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Projectdavid) -> None:
         vector_store = client.assistants.vector_stores.list(
@@ -31,7 +31,7 @@ class TestVectorStores:
         )
         assert_matches_type(VectorStoreListResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Projectdavid) -> None:
         response = client.assistants.vector_stores.with_raw_response.list(
@@ -45,7 +45,7 @@ class TestVectorStores:
         vector_store = response.parse()
         assert_matches_type(VectorStoreListResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Projectdavid) -> None:
         with client.assistants.vector_stores.with_streaming_response.list(
@@ -61,7 +61,7 @@ class TestVectorStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Projectdavid) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -71,7 +71,7 @@ class TestVectorStores:
                 kwargs={},
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_attach(self, client: Projectdavid) -> None:
         vector_store = client.assistants.vector_stores.attach(
@@ -82,7 +82,7 @@ class TestVectorStores:
         )
         assert_matches_type(VectorStoreAttachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_attach(self, client: Projectdavid) -> None:
         response = client.assistants.vector_stores.with_raw_response.attach(
@@ -97,7 +97,7 @@ class TestVectorStores:
         vector_store = response.parse()
         assert_matches_type(VectorStoreAttachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_attach(self, client: Projectdavid) -> None:
         with client.assistants.vector_stores.with_streaming_response.attach(
@@ -114,7 +114,7 @@ class TestVectorStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_attach(self, client: Projectdavid) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -133,7 +133,7 @@ class TestVectorStores:
                 kwargs={},
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_detach(self, client: Projectdavid) -> None:
         vector_store = client.assistants.vector_stores.detach(
@@ -144,7 +144,7 @@ class TestVectorStores:
         )
         assert_matches_type(VectorStoreDetachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_detach(self, client: Projectdavid) -> None:
         response = client.assistants.vector_stores.with_raw_response.detach(
@@ -159,7 +159,7 @@ class TestVectorStores:
         vector_store = response.parse()
         assert_matches_type(VectorStoreDetachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_detach(self, client: Projectdavid) -> None:
         with client.assistants.vector_stores.with_streaming_response.detach(
@@ -176,7 +176,7 @@ class TestVectorStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_detach(self, client: Projectdavid) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -201,7 +201,7 @@ class TestAsyncVectorStores:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncProjectdavid) -> None:
         vector_store = await async_client.assistants.vector_stores.list(
@@ -211,7 +211,7 @@ class TestAsyncVectorStores:
         )
         assert_matches_type(VectorStoreListResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncProjectdavid) -> None:
         response = await async_client.assistants.vector_stores.with_raw_response.list(
@@ -225,7 +225,7 @@ class TestAsyncVectorStores:
         vector_store = await response.parse()
         assert_matches_type(VectorStoreListResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncProjectdavid) -> None:
         async with async_client.assistants.vector_stores.with_streaming_response.list(
@@ -241,7 +241,7 @@ class TestAsyncVectorStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncProjectdavid) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -251,7 +251,7 @@ class TestAsyncVectorStores:
                 kwargs={},
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_attach(self, async_client: AsyncProjectdavid) -> None:
         vector_store = await async_client.assistants.vector_stores.attach(
@@ -262,7 +262,7 @@ class TestAsyncVectorStores:
         )
         assert_matches_type(VectorStoreAttachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_attach(self, async_client: AsyncProjectdavid) -> None:
         response = await async_client.assistants.vector_stores.with_raw_response.attach(
@@ -277,7 +277,7 @@ class TestAsyncVectorStores:
         vector_store = await response.parse()
         assert_matches_type(VectorStoreAttachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_attach(self, async_client: AsyncProjectdavid) -> None:
         async with async_client.assistants.vector_stores.with_streaming_response.attach(
@@ -294,7 +294,7 @@ class TestAsyncVectorStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_attach(self, async_client: AsyncProjectdavid) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
@@ -313,7 +313,7 @@ class TestAsyncVectorStores:
                 kwargs={},
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_detach(self, async_client: AsyncProjectdavid) -> None:
         vector_store = await async_client.assistants.vector_stores.detach(
@@ -324,7 +324,7 @@ class TestAsyncVectorStores:
         )
         assert_matches_type(VectorStoreDetachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_detach(self, async_client: AsyncProjectdavid) -> None:
         response = await async_client.assistants.vector_stores.with_raw_response.detach(
@@ -339,7 +339,7 @@ class TestAsyncVectorStores:
         vector_store = await response.parse()
         assert_matches_type(VectorStoreDetachResponse, vector_store, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_detach(self, async_client: AsyncProjectdavid) -> None:
         async with async_client.assistants.vector_stores.with_streaming_response.detach(
@@ -356,7 +356,7 @@ class TestAsyncVectorStores:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_detach(self, async_client: AsyncProjectdavid) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `assistant_id` but received ''"):
