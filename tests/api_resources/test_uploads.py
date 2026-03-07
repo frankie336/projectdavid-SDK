@@ -23,7 +23,7 @@ class TestUploads:
         upload = client.uploads.create(
             args={},
             kwargs={},
-            file=b"raw file contents",
+            file=b"Example data",
             purpose="purpose",
         )
         assert_matches_type(File, upload, path=["response"])
@@ -34,7 +34,7 @@ class TestUploads:
         response = client.uploads.with_raw_response.create(
             args={},
             kwargs={},
-            file=b"raw file contents",
+            file=b"Example data",
             purpose="purpose",
         )
 
@@ -49,7 +49,7 @@ class TestUploads:
         with client.uploads.with_streaming_response.create(
             args={},
             kwargs={},
-            file=b"raw file contents",
+            file=b"Example data",
             purpose="purpose",
         ) as response:
             assert not response.is_closed
@@ -72,7 +72,7 @@ class TestAsyncUploads:
         upload = await async_client.uploads.create(
             args={},
             kwargs={},
-            file=b"raw file contents",
+            file=b"Example data",
             purpose="purpose",
         )
         assert_matches_type(File, upload, path=["response"])
@@ -83,7 +83,7 @@ class TestAsyncUploads:
         response = await async_client.uploads.with_raw_response.create(
             args={},
             kwargs={},
-            file=b"raw file contents",
+            file=b"Example data",
             purpose="purpose",
         )
 
@@ -98,7 +98,7 @@ class TestAsyncUploads:
         async with async_client.uploads.with_streaming_response.create(
             args={},
             kwargs={},
-            file=b"raw file contents",
+            file=b"Example data",
             purpose="purpose",
         ) as response:
             assert not response.is_closed
