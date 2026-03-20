@@ -27,7 +27,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -202,7 +202,7 @@ class RunsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get(
-            f"/v1/runs/{run_id}",
+            path_template("/v1/runs/{run_id}", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -295,7 +295,7 @@ class RunsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._post(
-            f"/v1/runs/{run_id}/cancel",
+            path_template("/v1/runs/{run_id}/cancel", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -341,7 +341,7 @@ class RunsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            f"/v1/runs/{run_id}/events",
+            path_template("/v1/runs/{run_id}/events", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -387,7 +387,7 @@ class RunsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._put(
-            f"/v1/runs/{run_id}/metadata",
+            path_template("/v1/runs/{run_id}/metadata", run_id=run_id),
             body=maybe_transform(body, run_update_metadata_params.RunUpdateMetadataParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -434,7 +434,7 @@ class RunsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._put(
-            f"/v1/runs/{run_id}/status",
+            path_template("/v1/runs/{run_id}/status", run_id=run_id),
             body=maybe_transform({"status": status}, run_update_status_params.RunUpdateStatusParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -608,7 +608,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._get(
-            f"/v1/runs/{run_id}",
+            path_template("/v1/runs/{run_id}", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -701,7 +701,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._post(
-            f"/v1/runs/{run_id}/cancel",
+            path_template("/v1/runs/{run_id}/cancel", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -747,7 +747,7 @@ class AsyncRunsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            f"/v1/runs/{run_id}/events",
+            path_template("/v1/runs/{run_id}/events", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -793,7 +793,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._put(
-            f"/v1/runs/{run_id}/metadata",
+            path_template("/v1/runs/{run_id}/metadata", run_id=run_id),
             body=await async_maybe_transform(body, run_update_metadata_params.RunUpdateMetadataParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -840,7 +840,7 @@ class AsyncRunsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._put(
-            f"/v1/runs/{run_id}/status",
+            path_template("/v1/runs/{run_id}/status", run_id=run_id),
             body=await async_maybe_transform({"status": status}, run_update_status_params.RunUpdateStatusParams),
             options=make_request_options(
                 extra_headers=extra_headers,
