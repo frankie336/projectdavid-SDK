@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -79,7 +79,7 @@ class UsersResource(SyncAPIResource):
         if not target_user_id:
             raise ValueError(f"Expected a non-empty value for `target_user_id` but received {target_user_id!r}")
         return self._post(
-            f"/v1/admin/users/{target_user_id}/keys",
+            path_template("/v1/admin/users/{target_user_id}/keys", target_user_id=target_user_id),
             body=maybe_transform(
                 {
                     "expires_in_days": expires_in_days,
@@ -160,7 +160,7 @@ class AsyncUsersResource(AsyncAPIResource):
         if not target_user_id:
             raise ValueError(f"Expected a non-empty value for `target_user_id` but received {target_user_id!r}")
         return await self._post(
-            f"/v1/admin/users/{target_user_id}/keys",
+            path_template("/v1/admin/users/{target_user_id}/keys", target_user_id=target_user_id),
             body=await async_maybe_transform(
                 {
                     "expires_in_days": expires_in_days,

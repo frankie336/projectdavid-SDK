@@ -8,7 +8,7 @@ import httpx
 
 from ...types import StatusEnum
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -74,7 +74,7 @@ class FilesResource(SyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return self._get(
-            f"/v1/vector-stores/{vector_store_id}/files",
+            path_template("/v1/vector-stores/{vector_store_id}/files", vector_store_id=vector_store_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -121,7 +121,7 @@ class FilesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/vector-stores/{vector_store_id}/files",
+            path_template("/v1/vector-stores/{vector_store_id}/files", vector_store_id=vector_store_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -182,7 +182,7 @@ class FilesResource(SyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return self._post(
-            f"/v1/vector-stores/{vector_store_id}/files",
+            path_template("/v1/vector-stores/{vector_store_id}/files", vector_store_id=vector_store_id),
             body=maybe_transform(
                 {
                     "file_id": file_id,
@@ -246,7 +246,9 @@ class FilesResource(SyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return self._patch(
-            f"/v1/vector-stores/{vector_store_id}/files/{file_id}",
+            path_template(
+                "/v1/vector-stores/{vector_store_id}/files/{file_id}", vector_store_id=vector_store_id, file_id=file_id
+            ),
             body=maybe_transform(
                 {
                     "status": status,
@@ -319,7 +321,7 @@ class AsyncFilesResource(AsyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return await self._get(
-            f"/v1/vector-stores/{vector_store_id}/files",
+            path_template("/v1/vector-stores/{vector_store_id}/files", vector_store_id=vector_store_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -366,7 +368,7 @@ class AsyncFilesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/vector-stores/{vector_store_id}/files",
+            path_template("/v1/vector-stores/{vector_store_id}/files", vector_store_id=vector_store_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -427,7 +429,7 @@ class AsyncFilesResource(AsyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return await self._post(
-            f"/v1/vector-stores/{vector_store_id}/files",
+            path_template("/v1/vector-stores/{vector_store_id}/files", vector_store_id=vector_store_id),
             body=await async_maybe_transform(
                 {
                     "file_id": file_id,
@@ -491,7 +493,9 @@ class AsyncFilesResource(AsyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return await self._patch(
-            f"/v1/vector-stores/{vector_store_id}/files/{file_id}",
+            path_template(
+                "/v1/vector-stores/{vector_store_id}/files/{file_id}", vector_store_id=vector_store_id, file_id=file_id
+            ),
             body=await async_maybe_transform(
                 {
                     "status": status,

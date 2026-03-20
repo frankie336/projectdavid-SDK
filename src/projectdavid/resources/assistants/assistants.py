@@ -8,7 +8,7 @@ import httpx
 
 from ...types import assistant_list_params, assistant_create_params, assistant_update_params, assistant_retrieve_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -169,7 +169,7 @@ class AssistantsResource(SyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return self._get(
-            f"/v1/assistants/{assistant_id}",
+            path_template("/v1/assistants/{assistant_id}", assistant_id=assistant_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,7 +228,7 @@ class AssistantsResource(SyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return self._put(
-            f"/v1/assistants/{assistant_id}",
+            path_template("/v1/assistants/{assistant_id}", assistant_id=assistant_id),
             body=maybe_transform(
                 {
                     "description": description,
@@ -444,7 +444,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return await self._get(
-            f"/v1/assistants/{assistant_id}",
+            path_template("/v1/assistants/{assistant_id}", assistant_id=assistant_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -503,7 +503,7 @@ class AsyncAssistantsResource(AsyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return await self._put(
-            f"/v1/assistants/{assistant_id}",
+            path_template("/v1/assistants/{assistant_id}", assistant_id=assistant_id),
             body=await async_maybe_transform(
                 {
                     "description": description,
