@@ -16,7 +16,7 @@ from ..types import (
     action_list_pending_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -39,7 +39,7 @@ class ActionsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return ActionsResourceWithRawResponse(self)
 
@@ -48,7 +48,7 @@ class ActionsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return ActionsResourceWithStreamingResponse(self)
 
@@ -143,7 +143,7 @@ class ActionsResource(SyncAPIResource):
         if not action_id:
             raise ValueError(f"Expected a non-empty value for `action_id` but received {action_id!r}")
         return self._get(
-            f"/v1/actions/{action_id}",
+            path_template("/v1/actions/{action_id}", action_id=action_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -190,7 +190,7 @@ class ActionsResource(SyncAPIResource):
         if not action_id:
             raise ValueError(f"Expected a non-empty value for `action_id` but received {action_id!r}")
         return self._put(
-            f"/v1/actions/{action_id}",
+            path_template("/v1/actions/{action_id}", action_id=action_id),
             body=maybe_transform(
                 {
                     "status": status,
@@ -243,7 +243,7 @@ class ActionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action_id` but received {action_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/actions/{action_id}",
+            path_template("/v1/actions/{action_id}", action_id=action_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -289,7 +289,7 @@ class ActionsResource(SyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return self._get(
-            f"/v1/actions/pending/{run_id}",
+            path_template("/v1/actions/pending/{run_id}", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -314,7 +314,7 @@ class AsyncActionsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return AsyncActionsResourceWithRawResponse(self)
 
@@ -323,7 +323,7 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return AsyncActionsResourceWithStreamingResponse(self)
 
@@ -418,7 +418,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not action_id:
             raise ValueError(f"Expected a non-empty value for `action_id` but received {action_id!r}")
         return await self._get(
-            f"/v1/actions/{action_id}",
+            path_template("/v1/actions/{action_id}", action_id=action_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -465,7 +465,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not action_id:
             raise ValueError(f"Expected a non-empty value for `action_id` but received {action_id!r}")
         return await self._put(
-            f"/v1/actions/{action_id}",
+            path_template("/v1/actions/{action_id}", action_id=action_id),
             body=await async_maybe_transform(
                 {
                     "status": status,
@@ -518,7 +518,7 @@ class AsyncActionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `action_id` but received {action_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/actions/{action_id}",
+            path_template("/v1/actions/{action_id}", action_id=action_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -564,7 +564,7 @@ class AsyncActionsResource(AsyncAPIResource):
         if not run_id:
             raise ValueError(f"Expected a non-empty value for `run_id` but received {run_id!r}")
         return await self._get(
-            f"/v1/actions/pending/{run_id}",
+            path_template("/v1/actions/pending/{run_id}", run_id=run_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

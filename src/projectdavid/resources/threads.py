@@ -19,7 +19,7 @@ from ..types import (
     thread_get_formatted_messages_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -46,7 +46,7 @@ class ThreadsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return ThreadsResourceWithRawResponse(self)
 
@@ -55,7 +55,7 @@ class ThreadsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return ThreadsResourceWithStreamingResponse(self)
 
@@ -144,7 +144,7 @@ class ThreadsResource(SyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return self._get(
-            f"/v1/threads/{thread_id}",
+            path_template("/v1/threads/{thread_id}", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -198,7 +198,7 @@ class ThreadsResource(SyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return self._put(
-            f"/v1/threads/{thread_id}",
+            path_template("/v1/threads/{thread_id}", thread_id=thread_id),
             body=maybe_transform(
                 {
                     "meta_data": meta_data,
@@ -251,7 +251,7 @@ class ThreadsResource(SyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return self._delete(
-            f"/v1/threads/{thread_id}",
+            path_template("/v1/threads/{thread_id}", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -296,7 +296,7 @@ class ThreadsResource(SyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return self._get(
-            f"/v1/threads/{thread_id}/formatted_messages",
+            path_template("/v1/threads/{thread_id}/formatted_messages", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -343,7 +343,7 @@ class ThreadsResource(SyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return self._get(
-            f"/v1/threads/{thread_id}/messages",
+            path_template("/v1/threads/{thread_id}/messages", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -392,7 +392,7 @@ class ThreadsResource(SyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return self._get(
-            f"/v1/threads/{thread_id}/runs",
+            path_template("/v1/threads/{thread_id}/runs", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -439,7 +439,7 @@ class ThreadsResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get(
-            f"/v1/threads/user/{user_id}",
+            path_template("/v1/threads/user/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -485,7 +485,7 @@ class ThreadsResource(SyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return self._put(
-            f"/v1/threads/{thread_id}/metadata",
+            path_template("/v1/threads/{thread_id}/metadata", thread_id=thread_id),
             body=maybe_transform(body, thread_update_metadata_params.ThreadUpdateMetadataParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -511,7 +511,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return AsyncThreadsResourceWithRawResponse(self)
 
@@ -520,7 +520,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return AsyncThreadsResourceWithStreamingResponse(self)
 
@@ -609,7 +609,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return await self._get(
-            f"/v1/threads/{thread_id}",
+            path_template("/v1/threads/{thread_id}", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -663,7 +663,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return await self._put(
-            f"/v1/threads/{thread_id}",
+            path_template("/v1/threads/{thread_id}", thread_id=thread_id),
             body=await async_maybe_transform(
                 {
                     "meta_data": meta_data,
@@ -716,7 +716,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return await self._delete(
-            f"/v1/threads/{thread_id}",
+            path_template("/v1/threads/{thread_id}", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -761,7 +761,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return await self._get(
-            f"/v1/threads/{thread_id}/formatted_messages",
+            path_template("/v1/threads/{thread_id}/formatted_messages", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -808,7 +808,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return await self._get(
-            f"/v1/threads/{thread_id}/messages",
+            path_template("/v1/threads/{thread_id}/messages", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -857,7 +857,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return await self._get(
-            f"/v1/threads/{thread_id}/runs",
+            path_template("/v1/threads/{thread_id}/runs", thread_id=thread_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -904,7 +904,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._get(
-            f"/v1/threads/user/{user_id}",
+            path_template("/v1/threads/user/{user_id}", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -950,7 +950,7 @@ class AsyncThreadsResource(AsyncAPIResource):
         if not thread_id:
             raise ValueError(f"Expected a non-empty value for `thread_id` but received {thread_id!r}")
         return await self._put(
-            f"/v1/threads/{thread_id}/metadata",
+            path_template("/v1/threads/{thread_id}/metadata", thread_id=thread_id),
             body=await async_maybe_transform(body, thread_update_metadata_params.ThreadUpdateMetadataParams),
             options=make_request_options(
                 extra_headers=extra_headers,

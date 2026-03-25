@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -32,7 +32,7 @@ class ApikeysResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return ApikeysResourceWithRawResponse(self)
 
@@ -41,7 +41,7 @@ class ApikeysResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return ApikeysResourceWithStreamingResponse(self)
 
@@ -82,7 +82,7 @@ class ApikeysResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._post(
-            f"/v1/users/{user_id}/apikeys",
+            path_template("/v1/users/{user_id}/apikeys", user_id=user_id),
             body=maybe_transform(
                 {
                     "expires_in_days": expires_in_days,
@@ -137,7 +137,7 @@ class ApikeysResource(SyncAPIResource):
         if not key_prefix:
             raise ValueError(f"Expected a non-empty value for `key_prefix` but received {key_prefix!r}")
         return self._get(
-            f"/v1/users/{user_id}/apikeys/{key_prefix}",
+            path_template("/v1/users/{user_id}/apikeys/{key_prefix}", user_id=user_id, key_prefix=key_prefix),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +183,7 @@ class ApikeysResource(SyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get(
-            f"/v1/users/{user_id}/apikeys",
+            path_template("/v1/users/{user_id}/apikeys", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -233,7 +233,7 @@ class ApikeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_prefix` but received {key_prefix!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/users/{user_id}/apikeys/{key_prefix}",
+            path_template("/v1/users/{user_id}/apikeys/{key_prefix}", user_id=user_id, key_prefix=key_prefix),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -258,7 +258,7 @@ class AsyncApikeysResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return AsyncApikeysResourceWithRawResponse(self)
 
@@ -267,7 +267,7 @@ class AsyncApikeysResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return AsyncApikeysResourceWithStreamingResponse(self)
 
@@ -308,7 +308,7 @@ class AsyncApikeysResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._post(
-            f"/v1/users/{user_id}/apikeys",
+            path_template("/v1/users/{user_id}/apikeys", user_id=user_id),
             body=await async_maybe_transform(
                 {
                     "expires_in_days": expires_in_days,
@@ -363,7 +363,7 @@ class AsyncApikeysResource(AsyncAPIResource):
         if not key_prefix:
             raise ValueError(f"Expected a non-empty value for `key_prefix` but received {key_prefix!r}")
         return await self._get(
-            f"/v1/users/{user_id}/apikeys/{key_prefix}",
+            path_template("/v1/users/{user_id}/apikeys/{key_prefix}", user_id=user_id, key_prefix=key_prefix),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -409,7 +409,7 @@ class AsyncApikeysResource(AsyncAPIResource):
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._get(
-            f"/v1/users/{user_id}/apikeys",
+            path_template("/v1/users/{user_id}/apikeys", user_id=user_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -459,7 +459,7 @@ class AsyncApikeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_prefix` but received {key_prefix!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/users/{user_id}/apikeys/{key_prefix}",
+            path_template("/v1/users/{user_id}/apikeys/{key_prefix}", user_id=user_id, key_prefix=key_prefix),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

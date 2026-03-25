@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -30,7 +30,7 @@ class VectorStoresResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return VectorStoresResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class VectorStoresResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return VectorStoresResourceWithStreamingResponse(self)
 
@@ -71,7 +71,7 @@ class VectorStoresResource(SyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return self._get(
-            f"/v1/assistants/{assistant_id}/vector-stores",
+            path_template("/v1/assistants/{assistant_id}/vector-stores", assistant_id=assistant_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,7 +119,11 @@ class VectorStoresResource(SyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return self._post(
-            f"/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/attach",
+            path_template(
+                "/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/attach",
+                assistant_id=assistant_id,
+                vector_store_id=vector_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,7 +171,11 @@ class VectorStoresResource(SyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return self._delete(
-            f"/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/detach",
+            path_template(
+                "/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/detach",
+                assistant_id=assistant_id,
+                vector_store_id=vector_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,7 +200,7 @@ class AsyncVectorStoresResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#accessing-raw-response-data-eg-headers
         """
         return AsyncVectorStoresResourceWithRawResponse(self)
 
@@ -201,7 +209,7 @@ class AsyncVectorStoresResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/projectdavid-python#with_streaming_response
+        For more information, see https://www.github.com/frankie336/projectdavid-SDK#with_streaming_response
         """
         return AsyncVectorStoresResourceWithStreamingResponse(self)
 
@@ -233,7 +241,7 @@ class AsyncVectorStoresResource(AsyncAPIResource):
         if not assistant_id:
             raise ValueError(f"Expected a non-empty value for `assistant_id` but received {assistant_id!r}")
         return await self._get(
-            f"/v1/assistants/{assistant_id}/vector-stores",
+            path_template("/v1/assistants/{assistant_id}/vector-stores", assistant_id=assistant_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -281,7 +289,11 @@ class AsyncVectorStoresResource(AsyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return await self._post(
-            f"/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/attach",
+            path_template(
+                "/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/attach",
+                assistant_id=assistant_id,
+                vector_store_id=vector_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -329,7 +341,11 @@ class AsyncVectorStoresResource(AsyncAPIResource):
         if not vector_store_id:
             raise ValueError(f"Expected a non-empty value for `vector_store_id` but received {vector_store_id!r}")
         return await self._delete(
-            f"/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/detach",
+            path_template(
+                "/v1/assistants/{assistant_id}/vector-stores/{vector_store_id}/detach",
+                assistant_id=assistant_id,
+                vector_store_id=vector_store_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
